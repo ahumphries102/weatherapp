@@ -64,26 +64,27 @@ function App() {
       })
   return (
     <div>
-    <Landing city={weatherState.city} temperature={weatherState.zip} high={weatherState.high} low={weatherState.low} currentCondition={weatherState.currentCondition}/>
+    <section className="mainContainer">
+      <Landing city={weatherState.city} temperature={weatherState.zip} high={weatherState.high} low={weatherState.low} currentCondition={weatherState.currentCondition}/>
 
+        <form onSubmit={handleSubmit}>
+          <label>
+          Enter Zip Code:
+          <input
+          type="text"
+          value={zip}
+          onChange={e => setZip(e.target.value)}
+          />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
 
-
-
-      <form onSubmit={handleSubmit}>
-        <label>
-        Enter Zip Code:
-        <input
-        type="text"
-        value={zip}
-        onChange={e => setZip(e.target.value)}
-        />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-
-      <section className="weatherInfo">
-      <h1>The Five Day Forecast</h1>
-      {weatherCards}
+        <section className="weatherContainer">
+          <h1>The Five Day Forecast</h1>
+          <section className="weatherInfo">
+          {weatherCards}
+          </section>
+        </section>
       </section>
     </div>
   );
