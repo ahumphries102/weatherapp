@@ -70,6 +70,7 @@ input{
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .weatherCards{
   border-radius: 10px;
   height:auto;
