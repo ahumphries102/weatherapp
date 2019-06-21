@@ -5,6 +5,7 @@ function App() {
   const [ weatherState, setWeatherState] = useState(
     {
       city:null,
+      temp:null,
       high:null,
       low:null,
       currentCondition:null
@@ -31,6 +32,7 @@ function App() {
       .then(weatherData => {
         return setWeatherState({
           city:weatherData.name,
+          temp:Math.ceil(weatherData.main.temp * kcFrac - kcSub),
           high: Math.ceil(weatherData.main.temp_max * kcFrac - kcSub),
           low: Math.ceil(weatherData.main.temp_min * kcFrac - kcSub),
           currentCondition: weatherData.weather[0].description
@@ -52,14 +54,11 @@ function App() {
     //An asyncronous function that promises to resolve the fetches.
     const fetchData = async () => {
       try {
-        var data = await Promise.all([
           fetchWeather(),
           fetchForecast()
-        ]);
       } catch (error) {
         console.log(error);
       }
-      return data;
     };
     fetchData();
   }, []);
@@ -89,7 +88,7 @@ function App() {
     <div>
     <section className="mainContainer">
 
-      <Landing city={weatherState.city} temperature={weatherState.zip} high={weatherState.high} low={weatherState.low} currentCondition={weatherState.currentCondition}/>
+      <Landing city={weatherState.city} temperature={weatherState.temp} high={weatherState.high} low={weatherState.low} currentCondition={weatherState.currentCondition}/>
 
       <section className="formSection">
         <form onSubmit={handleSubmit}>
@@ -110,10 +109,8 @@ function App() {
           <section className="weatherInfo">
           {weatherCards}
           </section>
-
+          </section>
         </section>
-        
-      </section>
     </div>
   );
 }

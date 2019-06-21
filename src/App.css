@@ -24,6 +24,20 @@ input{
   font-size: 2rem;
   width: 100%;
 }
+.element{
+  padding: 2rem;
+}
+.element img{
+  float: left;
+  width:50%;
+  height: auto;
+  shape-outside: polygon(37px 9px, 157px 7px, 189px 131px, 7px 127px);
+
+  margin-right: 2rem;
+}
+.element p{
+  text-align: justify;
+}
 .landing{
   position: relative;
   height: 75vh;
